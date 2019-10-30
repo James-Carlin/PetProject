@@ -1,6 +1,11 @@
-<h1>{{ title }}</h1>
-
-<nav>
+<div class="sidenav">
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/favorites">Favorites</a>
-</nav>
+</div>
+
+<!-- Page content -->
+<div class="main">
+  <h1>{{ title }}</h1>
+</div>
+
+<router-outlet></router-outlet>

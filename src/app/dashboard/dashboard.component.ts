@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Dog } from '../dog';
+import { Dog } from '../model/dog';
 import { DogService } from '../dog.service';
+import { DOGS } from '../mock-dogs';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,17 +10,18 @@ import { DogService } from '../dog.service';
 })
 export class DashboardComponent implements OnInit {
 
-  dogs: Dog[] = [];
+  dogs = DOGS;
 
-  constructor(private dogService: DogService) { }
+  constructor(
+    private dogService: DogService) { }
 
   ngOnInit() {
-    this.getDogs();
+    this.dogService.getDogs();
   }
 
   getDogs(): void {
-    this.dogService.getDogs()
-      .subscribe();
+    //this.dogService.getDogs();
+      //.subscribe();
   }
 
 }

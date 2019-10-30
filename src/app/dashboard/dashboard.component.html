@@ -1,1 +1,20 @@
-<p>dashboard works!</p>
+<h1>Dashboard</h1>
+<div class="grid grid-pad">
+  <a *ngFor="let dog of dogs" class="col-1-4">
+<!--    <div class="module hero">-->
+<!--      <h4>{{ dog.breed }}</h4>-->
+<!--      <img src="./assets/doggo.jpg">-->
+    <div>
+      <mat-card class="example-card">
+        <div class="container">
+          <!--        <img mat-card-image src="https://images.dog.ceo/breeds/terrier-irish/n02093991_3695.jpg" alt="Photo of a Shiba Inu">-->
+          <img mat-card-image src="{{ dog.imageURL }}">
+          <div class="overlay"></div>
+          <div class="button"><a href="#"> LIKE </a></div>
+        </div>
+      </mat-card>
+    </div>
+  </a>
+</div>
+
+

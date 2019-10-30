@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritesComponent implements OnInit {
 
+  private dogs:string[] = ['1', '2'];
+
+
   constructor() { }
 
   ngOnInit() {
