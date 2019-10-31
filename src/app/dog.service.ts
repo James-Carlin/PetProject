@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Dog } from './model/dog';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DogImage } from './model/dogImage';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -9,18 +10,19 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class DogService {
 
+  private clicked = 0;
+
   constructor(
     private http: HttpClient
   ) { }
 
   private dogsUrl = 'https://dog.ceo/api/breeds/image/random';
+  //private dogsUrl = 'https://images.dog.ceo/breeds/sheepdog-shetland/n02105855_2433.jpg';
 
-  //Dog Array
+  // Dog Array
   dogs: Dog[] = [];
+  likedDogs: Dog[];
 
-  httpOptions = {
-    headers: new HttpHeaders({'Content Type': 'application/json'})
-  };
 
   private  handleError<T>(operation = 'operation', result?: T){
     return (error: any): Observable<T> => {
@@ -28,34 +30,41 @@ export class DogService {
       // TODO: improve error message
       console.log('Error');
 
-      //Keep app running
+      // Keep app running
       return of(result as T);
     };
   }
 
-  // getDogs(): Observable<Dog[]> {
-  //   return this.http.get<Dog[]>(this.dogsUrl).pipe(
-  //     tap(_ => console.log('fetched dogs')),
-  //     catchError(this.handleError<Dog[]>('getDogs', []))
-  //   );
-  // }
+
   getDogs() {
+
     for (let i = 0; i < 20; i++ ) {
-      const imageUrl = this.http.get('https://dog.ceo/api/breeds/image/random').pipe(
-        tap(_=> console.log('fetched dog')),
-        catchError(this.handleError<Dog>('Get Dog'))
-      );
-      console.log(imageUrl);
-      const dog = new Dog(i, 'collie-border', '');
-      this.dogs[i] = dog;
-      console.log(""+this.dogs[i].breed+", "+this.dogs[i].imageURL);
+      this.getRandomDog()
+        .subscribe(dogImage => {
+          this.dogs[i] = new Dog(i + 1, '', dogImage.message);
+        });
     }
+    console.log(this.dogs);
+    return this.dogs;
   }
+
+  getRandomDog() {
+
+    return this.http.get(this.dogsUrl);
+  }
+
+
+
   likeDog() {
-
+    console.log('clicked');
+    this.clicked++;
+    this.likedDogs.push(new Dog(this.clicked, '', 'https://images.dog.ceo/breeds/sheepdog-shetland/n02105855_2433.jpg'));
   }
 
-  removeDog() {
+  removeDog(dog: Dog | number){
+    //const id = typeof dog === 'number' ? dog : dog.id;
+
+
 
   }
 

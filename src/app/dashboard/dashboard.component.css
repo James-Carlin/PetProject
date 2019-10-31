@@ -53,6 +53,19 @@ h4 {
 h1 {
   padding: 10px 200px;
 }
+
+.newDogs {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  padding: 10px 50px;
+  margin-left: 200px;
+}
+
 @media (max-width: 600px) {
   .module {
     font-size: 10px;

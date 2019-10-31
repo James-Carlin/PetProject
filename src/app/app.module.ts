@@ -5,10 +5,8 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { HttpClientModule } from '@angular/common/http';
-import {MatCardModule} from '@angular/material/card';
-import { InMemoryDataService } from './in-memory-data.service';
-import { HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
+import { MatCardModule } from '@angular/material/card';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,13 +17,10 @@ import { HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     MatCardModule,
-
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false}
-    )
+    HttpClientModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
