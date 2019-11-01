@@ -11,32 +11,35 @@ export class FavoritesComponent implements OnInit {
 
   likedDogs: Dog[] = [];
 
+  mySubscription: any;
 
   constructor(
      private dogService: DogService  ) { }
+
 
   ngOnInit() {
     this.likedDogs = this.dogService.getLikedDogs();
     console.log(this.likedDogs);
   }
 
+
   removeDog(dog: Dog): void {
-    if(localStorage.getItem(dog.id.toString())){
+    if(localStorage.getItem(dog.id.toString())) {
       localStorage.removeItem(dog.id.toString());
     }
     else{
       console.log('error');
     }
 
-    //this.dogService.removeDog()
-    //this.likedDogs = this.dogService.getLikedDogs();
-    //this.ngOnInit();
-    console.log(localStorage.length);
-    this.likedDogs = this.dogService.getLikedDogs();
-    this.ngOnInit();
-  }
 
-  nameDog(){
+
+    console.log(localStorage.length);
+
+    // if(localStorage.length !== this.likedDogs.length){
+    //   this.likedDogs = this.dogService.getLikedDogs();
+    // }
+    window.location.reload();
+    this.likedDogs.shift();
 
   }
 

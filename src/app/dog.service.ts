@@ -65,11 +65,13 @@ export class DogService {
     //console.log(this.likedDogs);
   }
 
-  removeFromLiked() {
-
+  removeFromLiked(storageSize: number) {
+    for(let i = 0; i < storageSize; i++){
+      const retrievedDog = localStorage.getItem((i + 1).toString());
+      this.likedDogs[i] = JSON.parse(retrievedDog);
+    }
+    return this.likedDogs;
+    console.log(this.likedDogs);
   }
 
-  nameDog() {
-
-  }
 }

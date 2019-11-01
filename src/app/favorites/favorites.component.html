@@ -2,8 +2,8 @@
 
 
 <div class="grid grid-pad">
-  <a *ngFor="let dog of likedDogs" class="col-1-4">
-  <mat-card class="liked-dog" (click)="nameDog()">
+  <a *ngFor="let dog of likedDogs"  class="col-1-4">
+  <mat-card class="liked-dog" *ngIf="dog !== null">
 
       <mat-card-header *ngIf="dog !== null" class="dogHeader">
         <h4>{{dog.name}}</h4>
