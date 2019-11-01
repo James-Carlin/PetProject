@@ -21,7 +21,7 @@ export class DogService {
 
   // Dog Array
   dogs: Dog[] = [];
-  likedDogs: Dog[];
+  likedDogs: Dog[] = [];
 
 
   private  handleError<T>(operation = 'operation', result?: T){
@@ -53,18 +53,19 @@ export class DogService {
     return this.http.get(this.dogsUrl);
   }
 
+  getLikedDogs() {
 
+    for(let i = 0; i < localStorage.length; i++)
+    {
+      const retrievedDog = localStorage.getItem((i+1).toString());
+      this.likedDogs[i] = JSON.parse(retrievedDog);
+    }
 
-  likeDog() {
-    console.log('clicked');
-    this.clicked++;
-    this.likedDogs.push(new Dog(this.clicked, '', 'https://images.dog.ceo/breeds/sheepdog-shetland/n02105855_2433.jpg'));
+    return this.likedDogs;
+    //console.log(this.likedDogs);
   }
 
-  removeDog(dog: Dog | number){
-    //const id = typeof dog === 'number' ? dog : dog.id;
-
-
+  removeFromLiked() {
 
   }
 

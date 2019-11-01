@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Dog} from '../model/dog';
+import { DogService } from '../dog.service';
 
 @Component({
   selector: 'app-favorites',
@@ -7,12 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritesComponent implements OnInit {
 
-  private dogs:string[] = ['1', '2'];
+  likedDogs: Dog[] = [];
 
 
-  constructor() { }
+  constructor(
+     private dogService: DogService  ) { }
 
   ngOnInit() {
+    this.likedDogs = this.dogService.getLikedDogs();
+    console.log(this.likedDogs);
+  }
+
+  removeDog(dog: Dog): void {
+    if(localStorage.getItem(dog.id.toString())){
+      window.localStorage.removeItem(dog.id.toString());
+    }
+    else{
+      console.log('error');
+    }
+
+    //this.dogService.removeDog()
+    //this.likedDogs = this.dogService.getLikedDogs();
+    //this.ngOnInit();
+    console.log(localStorage.length);
   }
 
 }
