@@ -1,11 +1,11 @@
 export class Dog {
   id: number;
-  breed: string;
+  name: string;
   imageURL: string;
 
   constructor(id: number, breed: string, imageURL: string){
     this.id = id;
-    this.breed = breed;
+    this.name = breed;
     this.imageURL = imageURL;
   }
 }

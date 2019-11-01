@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
   likeDog(dog: Dog): void {
     this.clicked++;
     this.storageSize = localStorage.length;
+    dog.id = this.clicked;
     localStorage.setItem(this.clicked.toString(), JSON.stringify(dog));
     console.log(this.clicked);
 

@@ -3,10 +3,10 @@
 
 <div class="grid grid-pad">
   <a *ngFor="let dog of likedDogs" class="col-1-4">
-  <mat-card class="example-card">
+  <mat-card class="liked-dog" (click)="nameDog()">
 
-      <mat-card-header *ngIf="dog !== null">
-        <h4>{{dog.breed}}</h4>
+      <mat-card-header *ngIf="dog !== null" class="dogHeader">
+        <h4>{{dog.name}}</h4>
       </mat-card-header>
 
     <div *ngIf="dog !== null" class="container">
@@ -15,6 +15,11 @@
       <img mat-card-image src="{{ dog.imageURL }}">
       <div class="overlay"></div>
       <div class="button" (click)="this.removeDog(dog)"><a> DELETE </a></div>
+      <div class="input">
+        <label class="dogName">Name:
+          <input [(ngModel)]="dog.name" placeholder="name">
+        </label>
+      </div>
     </div>
 
   </mat-card>

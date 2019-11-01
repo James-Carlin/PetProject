@@ -22,7 +22,7 @@ export class FavoritesComponent implements OnInit {
 
   removeDog(dog: Dog): void {
     if(localStorage.getItem(dog.id.toString())){
-      window.localStorage.removeItem(dog.id.toString());
+      localStorage.removeItem(dog.id.toString());
     }
     else{
       console.log('error');
@@ -32,6 +32,12 @@ export class FavoritesComponent implements OnInit {
     //this.likedDogs = this.dogService.getLikedDogs();
     //this.ngOnInit();
     console.log(localStorage.length);
+    this.likedDogs = this.dogService.getLikedDogs();
+    this.ngOnInit();
+  }
+
+  nameDog(){
+
   }
 
 }

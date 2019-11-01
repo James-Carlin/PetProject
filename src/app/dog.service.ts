@@ -57,7 +57,7 @@ export class DogService {
 
     for(let i = 0; i < localStorage.length; i++)
     {
-      const retrievedDog = localStorage.getItem((i+1).toString());
+      const retrievedDog = localStorage.getItem((i + 1).toString());
       this.likedDogs[i] = JSON.parse(retrievedDog);
     }
 
